@@ -20,7 +20,7 @@ public class HelloWorldConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public VelocityConfigurer velocityConfig() {
 	    VelocityConfigurer velocityConfigurer = new VelocityConfigurer();
-	    velocityConfigurer.setResourceLoaderPath("/WEB-INF/velocity/");
+	    velocityConfigurer.setResourceLoaderPath("/WEB-INF/");
 	    return velocityConfigurer;
 	}
 	
