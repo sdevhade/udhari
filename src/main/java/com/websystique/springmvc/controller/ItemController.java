@@ -111,7 +111,11 @@ public class ItemController {
         }
         return new ResponseEntity<List<?>>(items, HttpStatus.OK);
     }
-
+	@RequestMapping(value="/demo")
+    public ResponseEntity<String> demo() {
+		
+        return new ResponseEntity<String>("Working", HttpStatus.OK);
+    }
 	@RequestMapping(value="/printers/{id}")
     public ResponseEntity<Object> findSpecificPrinter(@PathVariable("id") long id) {
 		System.out.println("*************************************findSpecificPrinter");
