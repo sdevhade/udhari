@@ -54,8 +54,8 @@ public class UserService {
 		int row = jdbcTemplate.update(insert, params, types);
 		return row>0;
 	}
-	public static String addGroup(JsonObject obj){		
-		String SQL = "INSERT INTO groups (name,  owner) VALUES(?,?)";
+	public static String addGroup(final JsonObject obj){		
+		final String SQL = "INSERT INTO groups (name,  owner) VALUES(?,?)";
         KeyHolder holder = new GeneratedKeyHolder();
         UserService.getJdbcTemplate().update(new PreparedStatementCreator() { 
                         @Override
@@ -67,16 +67,16 @@ public class UserService {
                             return ps;
                         }
                     }, holder);
-        Long grpId = holder.getKey().longValue();
+        final Long grpId = holder.getKey().longValue();
 		JsonObjectBuilder job = Json.createObjectBuilder()
                 .add("group_name", obj.getString("group_name"))
                 .add("owner", obj.getString("owner")).add("group_id",grpId);
 		JsonArrayBuilder builder = Json.createArrayBuilder();
 		JsonArray members = obj.getJsonArray("members");
-		java.util.Date today = new java.util.Date();
+		final java.util.Date today = new java.util.Date();
         for (JsonValue mb : members) {
-            JsonObject js = (JsonObject) mb;
-            String SQL2 = "INSERT INTO group_members (gm_name,  email_id, group_id, date_created) VALUES(?,?,?,?)";
+            final JsonObject js = (JsonObject) mb;
+            final String SQL2 = "INSERT INTO group_members (gm_name,  email_id, group_id, date_created) VALUES(?,?,?,?)";
             holder = new GeneratedKeyHolder();
             UserService.getJdbcTemplate().update(new PreparedStatementCreator() { 
                 @Override
